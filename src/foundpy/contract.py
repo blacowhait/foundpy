@@ -110,7 +110,7 @@ class Contract:
         raise Exception(f'Variable {name} not found in storage layout.')
     
     def logs(self, event_signature=False, event_value=False, fromBlock=0, toBlock="latest"):
-        if event_value & event_signature:
+        if event_value and event_signature:
             event_signature = "0x" + config.w3.keccak(text=event_signature).hex()
             event_value = "0x" + encode_packed(["uint256"], [event_value]).hex()
             logs = config.w3.eth.get_logs({
